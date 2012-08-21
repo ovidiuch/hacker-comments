@@ -39,7 +39,6 @@ port.onMessage.addListener(function(data) {
     if (!commentUrl) {
       return;
     }
-    var shift = false;
     // Map SHIFT+BACKSPACE key combination
     $(document).keyup(function(e) {
       if (e.shiftKey && e.keyCode == 8) {
