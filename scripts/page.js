@@ -23,6 +23,14 @@ port.onMessage.addListener(function(data) {
       // Store addresses to cookie before following it
       register(this.href, getCommentUrl(this));
     });
+    // Map SHIFT+BACKSPACE key combination
+    $(document).keyup(function(e) {
+      if (e.shiftKey && e.keyCode == 8) {
+        e.preventDefault();
+        // Redirect to HN listing page
+        window.location = '/';
+      }
+    });
   } else {
     // Attempt to fetch HN comment url based on current location
     var commentUrl = map[String(window.location)];
