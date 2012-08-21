@@ -4,7 +4,7 @@ var register = function(articleUrl, commentUrl) {
   port.postMessage(map);
 };
 var getCommentUrl = function(anchor) {
-  return $(anchor).closest('tr').next().find('a:last').prop('href');
+  return $(anchor).closest('tr').next().find('a:nth-child(3)').prop('href');
 };
 // Init empty map of links, that will be populate
 // with first message from the background script
