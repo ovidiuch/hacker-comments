@@ -1,5 +1,5 @@
 var register = function(articleUrl, commentUrl) {
-  map[articleUrl] = commentUrl;
+  map[articleUrl] = map['last'] = commentUrl;
   // Send updated map of links to background script
   port.postMessage(map);
 };
@@ -32,9 +32,10 @@ port.onMessage.addListener(function(data) {
       }
     });
   } else {
-    // Attempt to fetch HN comment url based on current location
-    var commentUrl = map[String(window.location)];
-    // Ignore page if it wasn't forwarded from HN
+    // Attempt to fetch HN comment url based on current location,
+    // but also fallback to last forwarded link
+    var commentUrl = map[String(window.location)] || map['last'];
+    // Ignore page if there's no HN history
     if (!commentUrl) {
       return;
     }
